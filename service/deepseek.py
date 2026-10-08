@@ -1,16 +1,16 @@
 import os
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 from config import HF_TOKEN
 
-client = OpenAI(
+client = AsyncOpenAI(
     base_url="https://router.huggingface.co/v1",
     api_key=HF_TOKEN,
 )
 
 
 async def ask_deepseek(user_id: int, message: str):
-    completion = client.chat.completions.create(
+    completion = await client.chat.completions.create(
         model="deepseek-ai/DeepSeek-V4-Flash-0731:novita",
         messages=[
             {
